@@ -42,7 +42,7 @@ cv_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/cv"
 
 # Parameters
 n_folds = 10
-n_iters = 1
+n_iters = 3
 validation_rate = 0.3
 
 rng = np.random.RandomState(42)
