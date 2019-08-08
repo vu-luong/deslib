@@ -74,7 +74,7 @@ for file_name in file_list:
         for i_fold in range(n_folds):
             current_loop = base_loop + i_fold
 
-            # subtract one since index in python starts from 0 (matlab from 0)
+            # subtract one since index in python starts from 0 (matlab from 1)
             test_ids = cv[0, current_loop][:, 0] - 1
             train_ids = np.setdiff1d(all_ids, test_ids)
 
