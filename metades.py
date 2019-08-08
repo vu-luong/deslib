@@ -89,7 +89,7 @@ for file_name in file_list:
                                                               random_state=rng)
 
             # Base Classifiers
-            model_knn = KNeighborsClassifier(n_neighbors=7).fit(X_train, Y_train)
+            model_knn = KNeighborsClassifier(n_neighbors=5).fit(X_train, Y_train)
             model_nb = GaussianNB().fit(X_train, Y_train)
             model_lda = LinearDiscriminantAnalysis().fit(X_train, Y_train)
 
