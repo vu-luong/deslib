@@ -37,8 +37,8 @@ file_list = ["GM4", "Skin_NonSkin", "abalone", "appendicitis", "artificial1",
 
 file_list = ["abalone"]
 
-data_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/csv"
-cv_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/cv"
+data_folder = r"C:\Code\uci_data\csv"
+cv_folder = r"C:\Code\uci_data\cv"
 
 # Parameters
 n_folds = 10
@@ -104,7 +104,7 @@ for file_name in file_list:
             support_macro = precision_recall_fscore_support(Y_test, Y_pred, average='macro')
             support_micro = precision_recall_fscore_support(Y_test, Y_pred, average='micro')
 
-            print('Classification accuracy of META-DES: ', accuracy)
+            print('Accuracy at loop {}: {} '.format(current_loop + 1, accuracy))
 
             # Save results
             errors[current_loop] = 1 - accuracy
