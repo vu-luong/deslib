@@ -43,12 +43,15 @@ def write_file(array, folder, filename):
              # "vehicle", "vertebral_3C", "waveform_w_noise", "waveform_wo_noise", "wdbc",
              # "wine", "wine_red", "wine_white", "yeast"]
 
-file_list = ["yeast"]
+file_list = ["yeast", "shuttle", "plant_margin", "plant_shape", "plant_texture", "BreastTissue"]
 
 # file_list = ["abalone"]
 
-data_folder = r"C:\Code\uci_data\csv"
-cv_folder = r"C:\Code\uci_data\cv"
+# data_folder = r"C:\Code\uci_data\csv"
+# cv_folder = r"C:\Code\uci_data\cv"
+
+data_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/csv"
+cv_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/cv"
 
 # Parameters
 n_folds = 10
@@ -94,9 +97,15 @@ for file_name in file_list:
             X_test = D[test_ids, :-1]
             Y_test = D[test_ids, -1]
 
-            X_train, X_dev, Y_train, Y_dev = train_test_split(X_train, Y_train,
-                                                              test_size=0.3,
-                                                              random_state=rng)
+            while True:
+                X_train, X_dev, Y_train, Y_dev = train_test_split(X_train, Y_train,
+                                                                  test_size=0.3,
+                                                                  random_state=rng)
+
+                # print("classes_train = {}".format(np.unique(Y_train)))
+                # print("classes_dev = {}".format(np.unique(Y_dev)))
+                if not np.setdiff1d(np.unique(Y_train), np.unique(Y_dev)):
+                    break
 
             # Base Classifiers
             model_knn = KNeighborsClassifier(n_neighbors=5).fit(X_train, Y_train)
