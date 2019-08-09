@@ -23,35 +23,35 @@ def write_file(array, folder, filename):
 
 
 # file_list = ["GM4", "Skin_NonSkin", "abalone", "appendicitis", "artificial1",
-             # "australian", "balance", "banana", "biodeg", "blood",
-             # "breast-cancer"] 
+# "australian", "balance", "banana", "biodeg", "blood",
+# "breast-cancer"]
 
-             # "BreastTissue" ValueError: y contains previously unseen labels: [4.0]
+# "BreastTissue" ValueError: y contains previously unseen labels: [4.0]
 
 # file_list = ["bupa", "chess-krvk", "cleveland",
-             # "conn-bench-vowel", "contraceptive", "dermatology", "fertility", "haberman",
-             # "hayes-roth", "heart", "hepatitis", "hill_valley", "iris", "isolet",
-             # "led7digit_new", "letter", "libras", "madelon", "magic", "mammographic",
-             # "marketing", "monk-2_new", "multiple-features", "musk1", "musk2", "newthyroid",
-             # "page-blocks", "penbased_new_fix", "phoneme", "pima",
+# "conn-bench-vowel", "contraceptive", "dermatology", "fertility", "haberman",
+# "hayes-roth", "heart", "hepatitis", "hill_valley", "iris", "isolet",
+# "led7digit_new", "letter", "libras", "madelon", "magic", "mammographic",
+# "marketing", "monk-2_new", "multiple-features", "musk1", "musk2", "newthyroid",
+# "page-blocks", "penbased_new_fix", "phoneme", "pima",
 
 # "plant_margin", "plant_shape", "plant_texture",  Error
 
 # file_list = ["ring1", "satimage", 
-        # "shuttle", 
+# "shuttle",
 # file_list = ["sonar", "spambase", "tae", "texture-fix", "tic-tac-toe", "titanic_new", "twonorm1",
-             # "vehicle", "vertebral_3C", "waveform_w_noise", "waveform_wo_noise", "wdbc",
-             # "wine", "wine_red", "wine_white", "yeast"]
+# "vehicle", "vertebral_3C", "waveform_w_noise", "waveform_wo_noise", "wdbc",
+# "wine", "wine_red", "wine_white", "yeast"]
 
 file_list = ["yeast", "shuttle", "plant_margin", "plant_shape", "plant_texture", "BreastTissue"]
 
 # file_list = ["abalone"]
 
-# data_folder = r"C:\Code\uci_data\csv"
-# cv_folder = r"C:\Code\uci_data\cv"
+data_folder = r"C:\Code\uci_data\csv"
+cv_folder = r"C:\Code\uci_data\cv"
 
-data_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/csv"
-cv_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/cv"
+# data_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/csv"
+# cv_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/cv"
 
 # Parameters
 n_folds = 10
@@ -91,20 +91,21 @@ for file_name in file_list:
             test_ids = cv[0, current_loop][:, 0] - 1
             train_ids = np.setdiff1d(all_ids, test_ids)
 
-            X_train = D[train_ids, :-1]
-            Y_train = D[train_ids, -1]
+            X_train_original = D[train_ids, :-1]
+            Y_train_original = D[train_ids, -1]
 
             X_test = D[test_ids, :-1]
             Y_test = D[test_ids, -1]
 
             while True:
-                X_train, X_dev, Y_train, Y_dev = train_test_split(X_train, Y_train,
+                X_train, X_dev, Y_train, Y_dev = train_test_split(X_train_original, Y_train_original,
                                                                   test_size=0.3,
                                                                   random_state=rng)
 
                 # print("classes_train = {}".format(np.unique(Y_train)))
                 # print("classes_dev = {}".format(np.unique(Y_dev)))
-                if not np.setdiff1d(np.unique(Y_train), np.unique(Y_dev)):
+                # print(np.setdiff1d(np.unique(Y_train), np.unique(Y_dev)))
+                if np.setdiff1d(np.unique(Y_train), np.unique(Y_dev)).shape[0] == 0:
                     break
 
             # Base Classifiers
