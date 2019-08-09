@@ -22,20 +22,30 @@ def write_file(array, folder, filename):
     f.close()
 
 
-file_list = ["GM4", "Skin_NonSkin", "abalone", "appendicitis", "artificial1",
-             "australian", "balance", "banana", "biodeg", "blood",
-             "breast-cancer", "BreastTissue", "bupa", "chess-krvk", "cleveland",
-             "conn-bench-vowel", "contraceptive", "dermatology", "fertility", "haberman",
-             "hayes-roth", "heart", "hepatitis", "hill_valley", "iris", "isolet",
-             "led7digit_new", "letter", "libras", "madelon", "magic", "mammographic",
-             "marketing", "monk-2_new", "multiple-features", "musk1", "musk2", "newthyroid",
-             "page-blocks", "penbased_new_fix", "phoneme", "pima", "plant_margin",
-             "plant_shape", "plant_texture", "ring1", "satimage", "shuttle", "sonar",
-             "spambase", "tae", "texture-fix", "tic-tac-toe", "titanic_new", "twonorm1",
-             "vehicle", "vertebral_3C", "waveform_w_noise", "waveform_wo_noise", "wdbc",
-             "wine", "wine_red", "wine_white", "yeast"]
+# file_list = ["GM4", "Skin_NonSkin", "abalone", "appendicitis", "artificial1",
+             # "australian", "balance", "banana", "biodeg", "blood",
+             # "breast-cancer"] 
 
-file_list = ["abalone"]
+             # "BreastTissue" ValueError: y contains previously unseen labels: [4.0]
+
+# file_list = ["bupa", "chess-krvk", "cleveland",
+             # "conn-bench-vowel", "contraceptive", "dermatology", "fertility", "haberman",
+             # "hayes-roth", "heart", "hepatitis", "hill_valley", "iris", "isolet",
+             # "led7digit_new", "letter", "libras", "madelon", "magic", "mammographic",
+             # "marketing", "monk-2_new", "multiple-features", "musk1", "musk2", "newthyroid",
+             # "page-blocks", "penbased_new_fix", "phoneme", "pima",
+
+# "plant_margin", "plant_shape", "plant_texture",  Error
+
+# file_list = ["ring1", "satimage", 
+        # "shuttle", 
+# file_list = ["sonar", "spambase", "tae", "texture-fix", "tic-tac-toe", "titanic_new", "twonorm1",
+             # "vehicle", "vertebral_3C", "waveform_w_noise", "waveform_wo_noise", "wdbc",
+             # "wine", "wine_red", "wine_white", "yeast"]
+
+file_list = ["yeast"]
+
+# file_list = ["abalone"]
 
 data_folder = r"C:\Code\uci_data\csv"
 cv_folder = r"C:\Code\uci_data\cv"
