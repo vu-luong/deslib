@@ -48,7 +48,6 @@ cv_folder = r"C:\Code\Supplement_Data\cv"
 
 # Parameters
 n_folds = 10
-n_iters = 3
 validation_rate = 0.3
 
 rng = np.random.RandomState(42)
@@ -62,6 +61,12 @@ for file_name in file_list:
     print("D.shape = {}".format(D.shape))
 
     n_instances = D.shape[0]
+
+    if n_instances >= 1000000:
+        n_iters = 1
+    else:
+        n_iters = 3
+
     n_features = D.shape[1] - 1
 
     all_ids = np.array(range(D.shape[0]))
