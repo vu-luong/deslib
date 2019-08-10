@@ -23,32 +23,25 @@ def write_file(array, folder, filename):
 
 
 # file_list = ["GM4", "Skin_NonSkin", "abalone", "appendicitis", "artificial1",
-# "australian", "balance", "banana", "biodeg", "blood",
-# "breast-cancer"]
+#              "australian", "balance", "banana", "biodeg", "blood", "breast-cancer", "BreastTissue",
+#              "bupa", "chess-krvk", "cleveland", "conn-bench-vowel", "contraceptive", "dermatology", "fertility",
+#              "haberman", "hayes-roth", "heart", "hepatitis", "hill_valley", "iris", "isolet",
+#              "led7digit_new", "letter", "libras", "madelon", "magic", "mammographic",
+#              "marketing", "monk-2_new", "multiple-features", "musk1", "musk2", "newthyroid",
+#              "page-blocks", "penbased_new_fix", "phoneme", "pima", "plant_margin", "plant_shape", "plant_texture",
+#              "ring1", "satimage", "shuttle", "sonar", "spambase", "tae", "texture-fix", "tic-tac-toe", "titanic_new",
+#              "twonorm1", "vehicle", "vertebral_3C", "waveform_w_noise", "waveform_wo_noise", "wdbc",
+#              "wine", "wine_red", "wine_white", "yeast"]
 
-# "BreastTissue" ValueError: y contains previously unseen labels: [4.0]
+file_list = ["RBF", "Agrawal", "aloi_scale_as_uci", "Amazon", "AssetNegotiation-F2",
+             "AssetNegotiation-F3", "AssetNegotiation-F4", "BayesianNetworkGenerator_bridges_version1", "BNG_zoo",
+             "connect_4_as_uci", "covtype_libsvm_binary_scale_as_uci", "covtype", "Hyperplane",
+             "poker", "RandomTree", "Colon", "DowJones_dj30-1985-2003", "duke_as_uci",
+             "ECML", "electricity-normalized", "Embryonal", "Leukemia", "mushrooms_as_uci",
+             "STAGGER", "nursery", "optical", "bands", "soybean-large", "svmguide2_as_uci", "zoo"]
 
-# file_list = ["bupa", "chess-krvk", "cleveland",
-# "conn-bench-vowel", "contraceptive", "dermatology", "fertility", "haberman",
-# "hayes-roth", "heart", "hepatitis", "hill_valley", "iris", "isolet",
-# "led7digit_new", "letter", "libras", "madelon", "magic", "mammographic",
-# "marketing", "monk-2_new", "multiple-features", "musk1", "musk2", "newthyroid",
-# "page-blocks", "penbased_new_fix", "phoneme", "pima",
-
-# "plant_margin", "plant_shape", "plant_texture",  Error
-
-# file_list = ["ring1", "satimage", 
-# "shuttle",
-# file_list = ["sonar", "spambase", "tae", "texture-fix", "tic-tac-toe", "titanic_new", "twonorm1",
-# "vehicle", "vertebral_3C", "waveform_w_noise", "waveform_wo_noise", "wdbc",
-# "wine", "wine_red", "wine_white", "yeast"]
-
-file_list = ["yeast", "shuttle", "plant_margin", "plant_shape", "plant_texture", "BreastTissue"]
-
-# file_list = ["abalone"]
-
-data_folder = r"C:\Code\uci_data\csv"
-cv_folder = r"C:\Code\uci_data\cv"
+data_folder = r"C:\Code\Supplement_Data\data"
+cv_folder = r"C:\Code\Supplement_Data\cv"
 
 # data_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/csv"
 # cv_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/cv"
