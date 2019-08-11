@@ -6,7 +6,16 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from deslib.des import METADES
 from sklearn.metrics import precision_recall_fscore_support
+from sklearn.neighbors import NearestCentroid
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import LinearSVC
+from sklearn.neural_network import BernoulliRBM
+from sklearn.pipeline import Pipeline
+from sklearn import linear_model
+from sklearn.calibration import CalibratedClassifierCV
 import os
+
+from NearestCentroidProb import NearestCentroidProb
 
 
 def write_file(array, folder, filename):
@@ -40,15 +49,18 @@ file_list = ["RBF", "Agrawal", "aloi_scale_as_uci", "Amazon", "AssetNegotiation-
              "ECML", "electricity-normalized", "Embryonal", "Leukemia", "mushrooms_as_uci",
              "STAGGER", "nursery", "optical", "bands", "soybean-large", "svmguide2_as_uci", "zoo"]
 
-data_folder = r"C:\Code\Supplement_Data\data"
-cv_folder = r"C:\Code\Supplement_Data\cv"
+file_list = ["abalone"]
 
-# data_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/csv"
-# cv_folder = "/Users/AnhVu/Study/Machine_learning/Data/convert/cv"
+# data_folder = r"C:\Code\Supplement_Data\data"
+# cv_folder = r"C:\Code\Supplement_Data\cv"
+
+data_folder = "/Volumes/VUBINH/Machine Learning/csv_data/csv"
+cv_folder = "/Volumes/VUBINH/Machine Learning/csv_data/cv"
 
 # Parameters
 n_folds = 10
 validation_rate = 0.3
+n_classifiers = 7
 
 rng = np.random.RandomState(42)
 
@@ -100,9 +112,6 @@ for file_name in file_list:
                                                                   test_size=0.3,
                                                                   random_state=rng)
 
-                # print("classes_train = {}".format(np.unique(Y_train)))
-                # print("classes_dev = {}".format(np.unique(Y_dev)))
-                # print(np.setdiff1d(np.unique(Y_train), np.unique(Y_dev)))
                 if np.setdiff1d(np.unique(Y_train), np.unique(Y_dev)).shape[0] == 0:
                     break
 
@@ -111,7 +120,29 @@ for file_name in file_list:
             model_nb = GaussianNB().fit(X_train, Y_train)
             model_lda = LinearDiscriminantAnalysis().fit(X_train, Y_train)
 
-            pool_classifiers = [model_lda, model_nb, model_knn]
+            pool_classifiers = []
+            if n_classifiers == 3:
+                pool_classifiers = [model_lda, model_nb, model_knn]
+            elif n_classifiers == 7:
+                model_nmc = NearestCentroidProb().fit(X_train, Y_train)
+                model_dt = DecisionTreeClassifier().fit(X_train, Y_train)
+
+                # L2SVM
+                l2svm = LinearSVC(random_state=rng, tol=1e-5)
+                model_l2svm = CalibratedClassifierCV(l2svm)
+                model_l2svm.fit(X_train, Y_train)
+                # L2SVM
+
+                # DRBM
+                logistic = linear_model.LogisticRegression(solver='newton-cg', tol=1, multi_class='multinomial')
+                rbm = BernoulliRBM(random_state=0, verbose=True)
+                model_drbm = Pipeline(steps=[('rbm', rbm), ('logistic', logistic)])
+                model_drbm.fit(X_train, Y_train)
+                # DRBM
+
+                pool_classifiers = [model_lda, model_nb, model_knn, model_nmc, model_dt, model_l2svm, model_drbm]
+
+            print('Num Classifiers = {}'.format(len(pool_classifiers)))
 
             metades = METADES(pool_classifiers)
 
