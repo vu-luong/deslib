@@ -112,6 +112,7 @@ for file_name in file_list:
                                                                   test_size=0.3,
                                                                   random_state=rng)
 
+                # Check if test label set == train label set
                 if np.setdiff1d(np.unique(Y_train), np.unique(Y_dev)).shape[0] == 0:
                     break
 
