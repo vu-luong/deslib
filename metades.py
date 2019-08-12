@@ -135,8 +135,8 @@ for file_name in file_list:
                 # L2SVM
 
                 # DRBM
-                logistic = linear_model.LogisticRegression(solver='newton-cg', tol=1, multi_class='multinomial')
-                rbm = BernoulliRBM(n_components=5, random_state=rng, verbose=True)
+                logistic = linear_model.LogisticRegression()
+                rbm = BernoulliRBM(n_components=5, random_state=rng)
                 model_drbm = Pipeline(steps=[('rbm', rbm), ('logistic', logistic)])
                 model_drbm.fit(X_train, Y_train)
                 # DRBM
