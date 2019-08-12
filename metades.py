@@ -129,7 +129,7 @@ for file_name in file_list:
                 model_dt = DecisionTreeClassifier().fit(X_train, Y_train)
 
                 # L2SVM
-                l2svm = LinearSVC(random_state=rng, tol=1e-5)
+                l2svm = LinearSVC(random_state=rng)
                 model_l2svm = CalibratedClassifierCV(l2svm)
                 model_l2svm.fit(X_train, Y_train)
                 # L2SVM
